@@ -2,7 +2,9 @@ receivers:
   otlp:
     protocols:
       grpc:
+        endpoint:
       http:
+        endpoint:
 
 exporters:
   prometheus:
