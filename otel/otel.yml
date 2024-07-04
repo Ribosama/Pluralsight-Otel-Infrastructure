@@ -48,7 +48,7 @@ service:
     traces:
       receivers: [otlp]
       processors: [resource, batch]
-      exporters: [otlphttp]
+      exporters: [otlphttp, otlp]
     logs:
       receivers: [otlp]
       processors: [batch]
