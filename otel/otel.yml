@@ -15,15 +15,29 @@ exporters:
     endpoint: http://loki:3100/loki/api/v1/push
     tls:
       insecure: true
-
+  otlphttp:
+    endpoint: "https://pdx-sls-agent-api.saas.appdynamics.com"
+    headers: {"x-api-key": "58648fe6c03acca639065788e6f8a861644048ff1a7716daf06c79d64deb21db"}
 extensions:
   health_check:
   zpages:
      endpoint: otel:55679
 
 processors:
-  # Data sources: traces, metrics, logs
+  resource:
+    attributes:
+    - key: appdynamics.controller.account
+      action: upsert
+      value: "curie202407030512566"
+    - key: appdynamics.controller.host
+      action: upsert
+      value: "curie202407030512566.saas.appdynamics.com"
+    - key: appdynamics.controller.port
+      action: upsert
+      value: 443
   batch:
+    timeout: 30s
+    send_batch_size: 90
 
 service:
   extensions: [zpages, health_check]  # Enable zpages
@@ -33,8 +47,8 @@ service:
       exporters: [prometheus]
     traces:
       receivers: [otlp]
-      processors: [batch]
-      exporters: [otlp]
+      processors: [resource, batch]
+      exporters: [otlphttp]
     logs:
       receivers: [otlp]
       processors: [batch]
