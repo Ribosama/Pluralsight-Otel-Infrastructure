@@ -18,7 +18,7 @@ exporters:
     tls:
       insecure: true
   otlphttp:
-    endpoint: "https://pdx-sls-agent-api.saas.appdynamics.com"
+    endpoint: https://pdx-sls-agent-api.saas.appdynamics.com
     headers: {"x-api-key": "58648fe6c03acca639065788e6f8a861644048ff1a7716daf06c79d64deb21db"}
 extensions:
   health_check:
