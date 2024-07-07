@@ -50,7 +50,7 @@ service:
     traces:
       receivers: [otlp]
       processors: [resource, batch]
-      exporters: [otlphttp, otlp]
+      exporters: [otlphttp]
     logs:
       receivers: [otlp]
       processors: [batch]
