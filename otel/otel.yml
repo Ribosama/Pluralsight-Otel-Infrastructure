@@ -20,6 +20,8 @@ exporters:
   otlphttp:
     endpoint: https://pdx-sls-agent-api.saas.appdynamics.com
     headers: {"x-api-key": "58648fe6c03acca639065788e6f8a861644048ff1a7716daf06c79d64deb21db"}
+  debug:
+    verbosity: detailed
 extensions:
   health_check:
   zpages:
@@ -50,7 +52,7 @@ service:
     traces:
       receivers: [otlp]
       processors: [resource, batch]
-      exporters: [otlphttp]
+      exporters: [debug]
     logs:
       receivers: [otlp]
       processors: [batch]
