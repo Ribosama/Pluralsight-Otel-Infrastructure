@@ -47,7 +47,7 @@ services:
       - otel-collector      
     networks:
       otel:
-  
+
   loki:
     # https://github.com/grafana/loki/releases
     image: grafana/loki:2.8.0
